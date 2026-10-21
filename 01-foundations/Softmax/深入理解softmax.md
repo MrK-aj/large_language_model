@@ -9,7 +9,7 @@
 ### 1.1 核心公式、
 一个n维实数向量x = [$x_1,x_2,……,x_n$]：
 > $$
-> Softmax(x_i) = \\\frac{e^{x_i}}{\\\sum_{j=1}^n{e^{x_i}}}
+> Softmax(x_i) = {\\\frac{e^{x_i}}{\\\sum_{j=1}^n{e^{x_j}}}}
 > $$
 
 $e^{x^i}$ > 0，保证每个元素输出为正，放大数值差异
@@ -30,7 +30,7 @@ if __name__ == "__main__":
 
 ### 1.2 稳定版公式：解决大数值上溢问题
 数学证明：减去最大值并不改变结果
-> $$ \\\frac{e^{{x_i}-c}}{\\\sum_{j}e^{x_j-c}} = \\\frac{{e^x_i}•{e^{-c}}}{e^{-c}•{\\\sum_{j}e^{x^j}}} = \\\frac{e^{x_i}}{\\\sum_{j}e^{x_j}}$$
+> $$ \\\frac{e^{{x_i}-c}}{\\\sum_{j}e^{x_j-c}} = {\\\frac{{e^x_i}•{e^{-c}}}{e^{-c}•{\\\sum_{j}e^{x^j}}}}= {\\\frac{e^{x_i}}{\\\sum_{j}e^{x_j}}}$$
 
 
 ~~~
@@ -55,7 +55,7 @@ if __name__ == "__main__":
     [-1.31326169 -0.31326169        -inf]
 ### 1.3 logsoftmax：实际工程运用较多
 
-> $$LogSoftmax(x_i) = log(\\\frac{e^{x_i}}{\\\sum_{j}e^{x_j}}) = x_i-log\\\sum_{j}e^{x_j}$$
+> $$LogSoftmax(x_i) = log({\\\frac{e^{x_i}}{\\\sum_{j}e^{x_j}}}) = x_i-log{\\\sum_{j}e^{x_j}}$$
 
 >   使用LogSoftmax一来可以避免概率值过小导致下溢，增强数值稳定；二可以提高计算效率
 
@@ -71,7 +71,8 @@ if __name__ == "__main__":
 [-990. -998.    0.]
 
 ### 1.4 带温度的SoftMax：通过引入“温度”参数T调整分布平滑程度：
-> $$Softmax(x_i/T) = \\\frac{\\\frac {e^{x_i}}{{T}}}{{\\\sum_j{\\\frac{e^{x_i}}{{T}}}}}$$
+> $$Softmax(x_i/T) = {\\\frac{e^{{x_i}/T}}{\\\sum_{j}e^{{x_j}/T}}}$$
+
 
 
 ~~~
